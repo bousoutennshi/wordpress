@@ -7,50 +7,50 @@ WordPress rop Archive Search API
 パラメータの解説
 ----------------
 
-post_type :
+post_type :  
     投稿タイプを指定します。
     デフォルトはpostとなります。
 
-results :
+results :  
     取得件数を指定します。
     デフォルトは30件となります。
 
-start :
+start :  
     取得開始位置を指定します。
     デフォルトは0となります。これはデータの先頭を表します。
 
-category:
+category:  
     カテゴリを指定します。
     デフォルトは空となり、全てのカテゴリに属するデータを取得します。
 
-s :
+s :  
     検索キーワードを指定します。
 
-m :
+m :  
     投稿日を指定します。
     指定フォーマットはYYYYMMDDとなります。
 
-orderby :
+orderby :  
     ソートに使う項目を指定します。
     デフォルトはpost_dateとなります。
 
-order :
+order :  
     ソート順を指定します。
     デフォルトはDESCとなります。昇順にしたい場合はASCを指定します。
 
-relation :
+relation :  
     カスタムフィールドの条件検索を指定します。
     デフォルトはANDとなります。ORを指定する事も可能です。
 
-event_start :
+event_start :  
     イベント開始日を指定します。
     指定フォーマットはYYYYMMDDとなります。
 
-event_end :
+event_end :  
     イベント終了日を指定します。
     指定フォーマットはYYYYMMDDとなります。
 
-event_startとevent_endの仕様について :
+event_startとevent_endの仕様について :  
     event_startおよびevent_endのどちらかを指定した場合はその日のイベント一覧を取得します。
     event_startとevent_endの両方を指定した場合はその間のイベント一覧を取得します。
 
@@ -58,14 +58,15 @@ event_startとevent_endの仕様について :
 使い方
 ----------------
 
-リクエスト例 :
-http://redonepress.heteml.jp/rop/archives/?category=news
+リクエスト例 :  
+http://redonepress.heteml.jp/rop/archives/?category=news  
 http://redonepress.heteml.jp/rop/archives/?event_start=20130101&event_end=20130228
 
 
 レスポンス仕様
 ----------------
 
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Results>
   <Post>
@@ -82,3 +83,4 @@ http://redonepress.heteml.jp/rop/archives/?event_start=20130101&event_end=201302
   .
   .
 </Results>
+```
