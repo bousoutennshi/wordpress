@@ -51,7 +51,7 @@ event_end :
     指定フォーマットはYYYYMMDDとなります。
 
 event_startとevent_endの仕様について :  
-    event_startおよびevent_endのどちらかを指定した場合はその日のイベント一覧を取得します。
+    event_startおよびevent_endのどちらかを指定した場合はその日のイベント一覧を取得します。  
     event_startとevent_endの両方を指定した場合はその間のイベント一覧を取得します。
 
 
