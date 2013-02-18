@@ -67,8 +67,10 @@ $post_datas = query_posts($query);
 <div id="main">
 
 <?php
-if( $event_date ){
+if( $event_date !== '' ){
     echo "<h1>$event_date開催中のイベント</h1>";
+}else{
+    echo '<h1>Event</h1>';
 }
 ?>
 
