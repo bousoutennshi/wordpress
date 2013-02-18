@@ -52,8 +52,8 @@ if( $event_start !== '' && $event_end !== '' ){
     // 指定イベント開始日設定
     $start = array(
         'key'       => CUSTOM_NAME1,
-        'value'     => intval($event_start),
-        'compare'   => '>=',
+        'value'     => array( intval($event_start), intval($event_end) ),
+        'compare'   => 'BETWEEN',
         'type'      => 'NUMERIC'
     );
     array_push($args['meta_query'],$start);
@@ -61,8 +61,8 @@ if( $event_start !== '' && $event_end !== '' ){
     // 指定イベント終了日設定
     $end = array(
         'key'       => CUSTOM_NAME2,
-        'value'     => intval($event_end),
-        'compare'   => '=>',
+        'value'     => array( intval($event_start), intval($event_end) ),
+        'compare'   => 'BETWEEN',
         'type'      => 'NUMERIC'
     );
     array_push($args['meta_query'],$end);
