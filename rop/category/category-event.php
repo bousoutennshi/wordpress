@@ -1,5 +1,40 @@
 <?php
-  $search_date = $_GET['search_date'];
+
+/**
+ * Category Name : event
+ *
+ */
+
+// イベント開催日取得
+$event_date = isset($_REQUEST['event_date']) ? $_REQUEST['event_date'] : '';
+
+// 投稿データ検索クエリ作成
+$query = array(
+    'category_name' => 'event'
+);
+
+// イベント開催日検索追加
+if( $event_date !== '' ){
+    $query['meta_query'] = array(
+        'relation'  => 'AND',
+        array(
+            'key'       => 'イベント開始日',
+            'value'     => $event_date,
+            'compare'   => '<=',
+            'type'      => 'NUMERIC'
+        ),
+        array(
+            'key'       => 'イベント終了日',
+            'value'     => $event_date,
+            'compare'   => '>=',
+            'type'      => 'NUMERIC'
+        )
+    );
+}
+
+// 投稿データ取得
+$post_datas = query_posts($query);
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -32,73 +67,64 @@
 <div id="main">
 
 <?php
-if($search_date){
+if( $event_date ){
+    echo "<h1>$event_date開催中のイベント</h1>";
+}
 ?>
-<h1><?php echo $search_date; ?>開催中のイベント</h1>
+
 <?php
-}
+
+// div cntents ロジック追加
+$i = 0;
+$post_datas_num = count($post_datas);
+foreach( $post_datas as $post_data ){
+
+    // 3個回ったらリセット
+    if( $i === 3 ) $i = 0;
+
+    if( $i === 0 ){
+        // 1行を形成するdiv
+        echo '<div class="clfix decMB20">';
+    }
+    if( $i === 2 ){
+        // 3個目を形成するdiv
+        echo '<div class="ropCmnMdPanel typeLast">';
+    }else{
+        // 1個目と2個目を形成するdiv
+        echo '<div class="ropCmnMdPanel">';
+    }
+
 ?>
 
-<?php if (have_posts()) : ?>
-<?php while (have_posts()) : the_post(); ?>
-
-
-<?php 
-var_dump($post);
-if($i == undefined || $i == null) {
-  $i = 0;
-}
-if($i == 0 || $i % 3 == 0) {
-?>
-<div class="clfix decMB20">
-<?php 
-}
-if (($i == 2) || ($i % 3 == 2)) {
-?>
-<div class="ropCmnMdPanel typeLast">
-<?php 
-} else{
-?>
-<div class="ropCmnMdPanel">
-<?php 
-}
-?>
-  <a href="<?php the_permalink(); ?>">
-  <span class="untPanelInner">
-    <span class="ptsImg decMB10">
-      <?php the_post_thumbnail('medium'); ?>
+<a href="<?php echo $post_data->guid; ?>">
+    <span class="untPanelInner">
+        <span class="ptsImg decMB10">
+            <?php echo get_the_post_thumbnail($post_data->ID, 'medium'); ?>
+        </span>
+        <span class="ptsTtl decMB5">
+            <?php echo $post_data->post_title; ?>
+        </span>
+        <span class="ptsDate decMB10">
+            <?php echo get_the_time("Y/m/d",$post_data->ID); ?>
+        </span>
+        <span class="ptsLead decMB10">
+            <?php echo get_the_excerpt($post_data->post_content); ?>
+        </span>
     </span>
-    <span class="ptsTtl decMB5">
-      <?php the_title(); ?>
-    </span>
-    <span class="ptsDate decMB10">
-<?php the_time(); ?>
-    </span>
-    <span class="ptsLead decMB10">
-<?php the_excerpt(); ?>
-    </span>
-  </span>
-  </a>
+</a>
 </div>
-<!-- /.ropCmnMdPanel -->
 
 <?php
-if (($i == 2) || ($i % 3 == 2)) {
-?>
-    </div>
-<?php
-  }
-  $i++;
-?>
-<?php endwhile; ?>
-<?php endif; ?>
-<?php 
-if (($i != 2) || (($i % 3) != 2)) {
-?>
-</div>
-<?php
+
+    $post_datas_num--;
+    if( $i === 2 || $post_datas_num === 0 ){
+        echo "</div>";
+    }
+    $i++;
 }
+
 ?>
+
 </div><!-- /#main -->
 
 <div id="sub">
