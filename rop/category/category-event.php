@@ -10,7 +10,8 @@ $event_date = isset($_REQUEST['event_date']) ? $_REQUEST['event_date'] : '';
 
 // 投稿データ検索クエリ作成
 $query = array(
-    'category_name' => 'event'
+    'category_name' => 'event',
+    'posts_per_page' => '15'
 );
 
 // イベント開催日検索追加
@@ -67,12 +68,40 @@ $post_datas = query_posts($query);
 <div id="main">
 
 <?php
-if( $event_date !== '' ){
-    echo "<h1>$event_date開催中のイベント</h1>";
+$today = date('Ymd');
+if( $event_date == $today ){
+?>
+
+<div class="ropCmnMdLbl decMB30">
+  <h1 class="ptsTtl typeTodayEvent">Today's event!</h1>
+</div>
+<!-- /.ropCmnMdLbl decMB30 -->
+
+<div class="ropCmnMdLead decMB20">
+<p>本日開催中のイベントを紹介します！</p>
+</div>
+
+<?php
 }else{
-    echo '<h1>Event</h1>';
+?>
+
+<div class="ropCmnMdLbl decMB30">
+  <h1 class="ptsTtl typeCalendar">CALENDAR</h1>
+</div>
+<!-- /.ropCmnMdLbl decMB30 -->
+
+<div class="ropCmnMdLead decMB20">
+<p>指定された日付で開催中のイベントを紹介します。</p>
+</div>
+
+<?php
 }
 ?>
+
+<?php echo $event_date; ?>
+
+
+
 
 <?php
 
@@ -127,17 +156,32 @@ foreach( $post_datas as $post_data ){
 
 ?>
 
+<?php
+if( $event_date == $today ){
+?>
+
+<p class="ptsBtnGoCalendar"><a href="#">イベントカレンダーはこちら</a></p>
+
+<?php
+}else{
+?>
+
+<p class="ptsBtnGoTodayEvent"><a href="#">本日開催中のイベントはこちら</a></p>
+
+<?php
+}
+?>
+
+
 </div><!-- /#main -->
 
 <div id="sub">
 
 <?php get_template_part( "sub/subMdPickup" ) ?>
 <?php get_template_part( "sub/subMdTodayEvent" ) ?>
-<?php get_template_part( "sub/subMdRanking" ) ?>
 <?php get_template_part( "sub/subMdBlog" ) ?>
 <?php get_template_part( "sub/subMdTwitter" ) ?>
 <?php get_template_part( "sub/subMdFacebook" ) ?>
-<?php get_template_part( "sub/subMdMailMagazin" ) ?>
 
 </div><!-- /#sub -->
 
