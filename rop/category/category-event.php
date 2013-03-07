@@ -41,7 +41,7 @@ $post_datas = query_posts($query);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title></title>
+<title>EVENT</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -58,6 +58,8 @@ $post_datas = query_posts($query);
 <body>
 
 <div id="wrapper">
+
+<?php get_template_part( "MHD" ) ?>
 
 <div class="decMB40">
 <?php get_header(); ?>
@@ -91,17 +93,17 @@ if( $event_date == $today ){
 <!-- /.ropCmnMdLbl decMB30 -->
 
 <div class="ropCmnMdLead decMB20">
-<p>指定された日付で開催中のイベントを紹介します。</p>
+<?php
+if( $event_date ){
+    echo "<p>".$event_date."のイベントを紹介します。</p>";
+}else{
+    echo "<p>RED ONE PRESSのイベントを紹介します。</p>";
+}
+?>
 </div>
-
 <?php
 }
 ?>
-
-<?php echo $event_date; ?>
-
-
-
 
 <?php
 
@@ -125,9 +127,11 @@ foreach( $post_datas as $post_data ){
         echo '<div class="ropCmnMdPanel">';
     }
 
+    // heteml url を置き換え 
+    $url = str_replace("redonepress.heteml.jp/rop","redonepress.com",$post_data->guid);
 ?>
 
-<a href="<?php echo $post_data->guid; ?>">
+<a href="<?php echo $url; ?>">
     <span class="untPanelInner">
         <span class="ptsImg decMB10">
             <?php echo get_the_post_thumbnail($post_data->ID, 'medium'); ?>
@@ -139,7 +143,7 @@ foreach( $post_datas as $post_data ){
             <?php echo get_the_time("Y/m/d",$post_data->ID); ?>
         </span>
         <span class="ptsLead decMB10">
-            <?php echo get_the_excerpt($post_data->post_content); ?>
+            <?php echo mb_substr(strip_tags($post_data->post_content),0,60)."..."; ?>
         </span>
     </span>
 </a>
@@ -160,18 +164,17 @@ foreach( $post_datas as $post_data ){
 if( $event_date == $today ){
 ?>
 
-<p class="ptsBtnGoCalendar"><a href="#">イベントカレンダーはこちら</a></p>
+<!-- p class="ptsBtnGoCalendar"><a href="#">イベントカレンダーはこちら</a></p -->
 
 <?php
 }else{
 ?>
 
-<p class="ptsBtnGoTodayEvent"><a href="#">本日開催中のイベントはこちら</a></p>
+<p class="ptsBtnGoTodayEvent"><a href="<?php echo home_url(); ?>/event?event_date=<?php echo $today; ?>">本日開催中のイベントはこちら</a></p>
 
 <?php
 }
 ?>
-
 
 </div><!-- /#main -->
 
@@ -179,6 +182,7 @@ if( $event_date == $today ){
 
 <?php get_template_part( "sub/subMdPickup" ) ?>
 <?php get_template_part( "sub/subMdTodayEvent" ) ?>
+<?php get_template_part( "sub/subMdRanking" ) ?>
 <?php get_template_part( "sub/subMdBlog" ) ?>
 <?php get_template_part( "sub/subMdTwitter" ) ?>
 <?php get_template_part( "sub/subMdFacebook" ) ?>
@@ -191,6 +195,7 @@ if( $event_date == $today ){
 
 <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jQuery.js"></script>
 <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/slideShow.js"></script>
+<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/scroll.js"></script>
 
 </div><!-- /#wrapper -->
 </body>
