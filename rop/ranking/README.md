@@ -20,13 +20,13 @@ end_date :
 sort :  
     ランキングのソートを指定します。  
     指定出来る値は現在以下の３種類となっています。  
+    デフォルトはtimeOnPageとなります。  
     ・timeOnPage  
         滞在時間の多い記事でソートします。  
-    ・visitors
+    ・visitors  
         訪問者の多い記事でソートします。  
-    ・pageviews
+    ・pageviews  
         ページビューの多い記事でソートします。  
-    デフォルトはtimeOnPageとなります。  
 
 
 使い方
