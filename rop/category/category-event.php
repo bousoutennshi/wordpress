@@ -117,7 +117,7 @@ foreach( $post_datas as $post_data ){
 
     if( $i === 0 ){
         // 1行を形成するdiv
-        echo '<div class="clfix decMB20">';
+        echo '<div class="clfix decMB10">';
     }
     if( $i === 2 ){
         // 3個目を形成するdiv

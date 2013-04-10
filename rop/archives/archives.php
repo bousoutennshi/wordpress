@@ -3,7 +3,6 @@
 Template Name: archives
 */
 ?>
-
 <?php
 
 // 定数設定

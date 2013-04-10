@@ -1,8 +1,8 @@
 <?php
 // 前後１ヶ月を取得
 date_default_timezone_set('Asia/Tokyo');
-$last_month = date("Ymd",strtotime("-1 month")); // YYYYMMDD
-$next_month = date("Ymd",strtotime("+1 month")); // YYYYMMDD
+$last_month = date("Ymd",strtotime("-6 month")); // YYYYMMDD
+$next_month = date("Ymd",strtotime("+6 month")); // YYYYMMDD
 
 // 範囲内の開催中イベントデータ取得
 $ch = curl_init();
