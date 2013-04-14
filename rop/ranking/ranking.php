@@ -14,10 +14,11 @@ require_once('/home/sites/heteml/users/r/e/d/redonepress/web/rop/wp-content/them
 $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : date('Y-m-d', strtotime("- 1 days"));
 $end_date   = isset($_GET['end_date'])   ? $_GET['end_date']   : date('Y-m-d');
 $sort       = isset($_GET['sort'])       ? $_GET['sort']       : 'timeOnPage';
+$results    = isset($_GET['results'])    ? $_GET['results']    : 5;
 
 try{
     // create library object
-    $ga = new GoogleAnalytics('xxxxx@gmail.com','passwd');
+    $ga = new GoogleAnalytics('xxxxx@gmail.com','xxxxx');
 
     // set profile
     $ga->setProfile('ga:xxxxx');
@@ -33,7 +34,8 @@ try{
         'dimensions'    => urlencode(join(",",$dimensions)),
         'metrics'       => urlencode(join(",",$metrics)),
         'filters'       => urlencode(join(";",$filters)),
-        'sort'          => urlencode("-ga:$sort")
+        'sort'          => urlencode("-ga:$sort"),
+        'max-results'   => $results
     );
 
     // get analytics report
@@ -52,8 +54,10 @@ try{
         if( is_null($results) ){
             $results = get_page_by_path($path,OBJECT,'post');
         }
-        $image = wp_get_attachment_image_src( get_post_thumbnail_id($results->ID), 'full' );
-        $ranking[$i]['ga:thumbnail'] = $image[0];
+        $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($results->ID), 'full' );
+        $ranking[$i]['ga:thumbnail'] = $thumbnail[0];
+        $icon = wp_get_attachment_image_src( get_post_thumbnail_id($results->ID), array(50,50) );
+        $ranking[$i]['ga:icon'] = $icon[0];
         foreach( $metrics as $key => $val ){
             $ranking[$i][$key] = $val;
         }

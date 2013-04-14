@@ -28,12 +28,17 @@ sort :
     ・pageviews  
         ページビューの多い記事でソートします。  
 
+results :  
+    ランキングの記事の取得件数を指定します。  
+    デフォルトは5件取得するようになっています。  
+
 
 使い方
 ----------------
 
 リクエスト例 :  
 http://redonepress.com/ranking/?sort=visitors  
+http://redonepress.com/ranking/?results=1  
 http://redonepress.com/ranking/?start_date=2013-01-01&end_date=2013-03-31  
 
 
@@ -46,28 +51,46 @@ http://redonepress.com/ranking/?start_date=2013-01-01&end_date=2013-03-31
         "ga:pageUrl": "http://redonepress.com/news/studio55-gakyouchunen-esow/",
         "ga:pageTitle": "STUDIO55 Presents「画狂中年」 by ESOW",
         "ga:thumbnail": "http://redonepress.heteml.jp/rop/wp-content/uploads/2013/04/gakyouchunen_ic.jpg",
-        "ga:timeOnPage": "11951.0",
-        "ga:visitors": "147",
-        "ga:pageviews": "197"
+        "ga:icon": "http://redonepress.heteml.jp/rop/wp-content/uploads/2013/04/gakyouchunen_ic-150x132.jpg",
+        "ga:timeOnPage": "9129.0",
+        "ga:visitors": "122",
+        "ga:pageviews": "167"
+    },
+    {
+        "ga:pageUrl": "http://redonepress.com/news/jose-parla-prose/",
+        "ga:pageTitle": "José Parlá Exhibition “PROSE”",
+        "ga:thumbnail": "http://redonepress.heteml.jp/rop/wp-content/uploads/2013/03/jose_ic.jpg",
+        "ga:icon": "http://redonepress.heteml.jp/rop/wp-content/uploads/2013/03/jose_ic-150x132.jpg",
+        "ga:timeOnPage": "2779.0",
+        "ga:visitors": "28",
+        "ga:pageviews": "38"
+    },
+    {
+        "ga:pageUrl": "http://redonepress.com/news/kansuke_akaike-stencil-stories/",
+        "ga:pageTitle": "赤池完介 “Stencil Stories”",
+        "ga:thumbnail": "http://redonepress.heteml.jp/rop/wp-content/uploads/2013/04/akaike_ic.jpg",
+        "ga:icon": "http://redonepress.heteml.jp/rop/wp-content/uploads/2013/04/akaike_ic-150x132.jpg",
+        "ga:timeOnPage": "2556.0",
+        "ga:visitors": "29",
+        "ga:pageviews": "35"
     },
     {
         "ga:pageUrl": "http://redonepress.com/news/reebok-keith-photo-report/",
         "ga:pageTitle": "“Keith Haring Exhibition” Photo Report",
         "ga:thumbnail": "http://redonepress.heteml.jp/rop/wp-content/uploads/2013/04/reeboks.jpg",
-        "ga:timeOnPage": "11441.0",
-        "ga:visitors": "97",
-        "ga:pageviews": "136"
+        "ga:icon": "http://redonepress.heteml.jp/rop/wp-content/uploads/2013/04/reeboks-150x132.jpg",
+        "ga:timeOnPage": "2514.0",
+        "ga:visitors": "22",
+        "ga:pageviews": "31"
     },
-    .
-    .
-    .
     {
-        "ga:pageUrl": "http://redonepress.com/search?q=cache:uXUysBeypKMJ:redonepress.com/news/hiro-kurata-home-field-disadvantage/+motus+fort+2013&cd=2&hl=ja&ct=clnk&gl=jp",
-        "ga:pageTitle": "Hiro Kurata “Home Field Disadvantage”",
-        "ga:thumbnail": "http://redonepress.heteml.jp/rop/wp-content/uploads/2013/03/hiro_ic.jpg",
-        "ga:timeOnPage": "0.0",
-        "ga:visitors": "1",
-        "ga:pageviews": "1"
+        "ga:pageUrl": "http://redonepress.com/news/hidden-champion-issue28/",
+        "ga:pageTitle": "HIDDEN CHAMPION Issue#28 Spring 2013",
+        "ga:thumbnail": "http://redonepress.heteml.jp/rop/wp-content/uploads/2013/04/hiddens.jpg",
+        "ga:icon": "http://redonepress.heteml.jp/rop/wp-content/uploads/2013/04/hiddens-150x132.jpg",
+        "ga:timeOnPage": "2205.0",
+        "ga:visitors": "19",
+        "ga:pageviews": "20"
     }
 ]
 ```
